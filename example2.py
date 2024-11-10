@@ -1,3 +1,4 @@
+import os
 import logging
 import sys
 import warnings
@@ -13,6 +14,8 @@ from sklearn.model_selection import train_test_split
 import mlflow
 import mlflow.sklearn
 from mlflow.models import infer_signature
+
+from dotenv import dotenv_values, load_dotenv
 
 from scipy.stats import uniform
 from sklearn.model_selection import RandomizedSearchCV
@@ -30,7 +33,11 @@ def eval_metrics(actual, pred):
 
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
+    load_dotenv(".secrets")
 
+    print(f"Tracking uri: {os.environ['MLFLOW_TRACKING_URI']}")
+
+    mlflow.set_tracking_uri(os.environ['MLFLOW_TRACKING_URI'])
     mlflow.set_experiment("wine_quality_experiment")
     mlflow.autolog()
 

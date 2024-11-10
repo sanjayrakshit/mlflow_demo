@@ -124,6 +124,8 @@ celerybeat.pid
 # Environments
 .env
 .venv
+.secret
+.secrets
 env/
 venv/
 ENV/
@@ -166,3 +168,5 @@ cython_debug/
 mlruns/
 
 .DS_Store/
+
+*secret*
